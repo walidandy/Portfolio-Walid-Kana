@@ -1,0 +1,27 @@
+from sympy import *
+x=symbols('x')
+print('-----------------')
+print('DATOS INICIALES')
+hz = float(input('Ingresar h(zapata) (m)='))
+dz = float(input('Ingresar d(densidad) (m)='))
+col=float(input('Ingresar col(diametro) (m)='))
+print('-----------------')
+print('ZAPATA')
+Pcm = float(input('Ingresar Pcm (tnf)='))
+Pcv = float(input('Ingresar Pcv (tnf)='))
+Mcm = float(input('Ingresar Mcm (tnf*m)='))
+Mcv = float(input('Ingresar Mcv (tnf*m)='))
+Ms_pos = float(input('Ingresar Ms(+) (tnf*m)='))
+Ms_neg = float(input('Ingresar Ms(-) (tnf*m)='))
+print('-----------------')
+print('COMBINACION CM,CV')
+L = float(input('Ingresar L (m)='))
+B = float(input('Ingresar B (m)='))
+d=float(input('Ingresar d/col (m)='))
+PP=dz*(L*B*hz)
+P_ce=PP+Pcm+Pcv
+R=P_ce
+M=Mcm+Mcv+PP*(L/2-col/2)
+P_ci=solveset(Eq(-M+R*(L/2-col/2)-x*d,0),x)
+print('P_ci=',P_ci.evalf(2),'tnf')
+a=P_ci.evalf(2)+8
